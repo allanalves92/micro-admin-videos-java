@@ -1,7 +1,7 @@
 package com.fullcycle.admin.catalogo.e2e.category;
 
 import com.fullcycle.admin.catalogo.E2ETest;
-import com.fullcycle.admin.catalogo.domain.genre.GenreID;
+import com.fullcycle.admin.catalogo.domain.category.CategoryID;
 import com.fullcycle.admin.catalogo.e2e.MockDsl;
 import com.fullcycle.admin.catalogo.infrastructure.category.models.UpdateCategoryRequest;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
@@ -295,7 +295,7 @@ public class CategoryE2ETest implements MockDsl {
         Assertions.assertTrue(MY_SQL_CONTAINER.isRunning());
         Assertions.assertEquals(0, categoryRepository.count());
 
-        deleteACategory(GenreID.from("123")).andExpect(status().isNoContent());
+        deleteACategory(CategoryID.from("123")).andExpect(status().isNoContent());
 
         Assert.assertEquals(0,categoryRepository.count());
     }

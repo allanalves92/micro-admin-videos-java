@@ -16,6 +16,7 @@ import javax.persistence.Table;
 public class CastMemberJpaEntity {
 
     @Id
+    @Column(name = "id", nullable = false)
     private String id;
 
     @Column(name = "name", nullable = false)

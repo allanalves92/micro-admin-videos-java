@@ -1,29 +1,26 @@
 package com.fullcycle.admin.catalogo.domain.genre;
 
 import com.fullcycle.admin.catalogo.domain.Identifier;
+import com.fullcycle.admin.catalogo.domain.utils.IdUtils;
 
-import java.util.Objects;
-import java.util.UUID;
+
+import static java.util.Objects.hash;
+import static java.util.Objects.requireNonNull;
 
 public class GenreID extends Identifier {
 
     private final String value;
 
     private GenreID(final String value) {
-        Objects.requireNonNull(value);
-        this.value = value;
+        this.value =  requireNonNull(value);;
     }
 
     public static GenreID unique() {
-        return GenreID.from(UUID.randomUUID());
+        return GenreID.from(IdUtils.uuid());
     }
 
     public static GenreID from(final String anId) {
         return new GenreID(anId);
-    }
-
-    public static GenreID from(final UUID anId) {
-        return new GenreID(anId.toString().toLowerCase());
     }
 
     @Override
@@ -41,6 +38,6 @@ public class GenreID extends Identifier {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getValue());
+        return hash(getValue());
     }
 }

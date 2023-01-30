@@ -12,24 +12,22 @@ import com.fullcycle.admin.catalogo.application.genre.update.DefaultUpdateGenreU
 import com.fullcycle.admin.catalogo.application.genre.update.UpdateGenreUseCase;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
 import com.fullcycle.admin.catalogo.domain.genre.GenreGateway;
+import java.util.Objects;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-
-import static java.util.Objects.requireNonNull;
 
 @Configuration
 public class GenreUseCaseConfig {
 
     private final CategoryGateway categoryGateway;
-
     private final GenreGateway genreGateway;
 
     public GenreUseCaseConfig(
             final CategoryGateway categoryGateway,
-            final GenreGateway genreGateway) {
-        this.categoryGateway = requireNonNull(categoryGateway);
-        this.genreGateway = requireNonNull(genreGateway);
+            final GenreGateway genreGateway
+    ) {
+        this.categoryGateway = Objects.requireNonNull(categoryGateway);
+        this.genreGateway = Objects.requireNonNull(genreGateway);
     }
 
     @Bean
@@ -48,7 +46,7 @@ public class GenreUseCaseConfig {
     }
 
     @Bean
-    public ListGenreUseCase listGenresUseCase() {
+    public ListGenreUseCase listGenreUseCase() {
         return new DefaultListGenreUseCase(genreGateway);
     }
 
@@ -56,5 +54,4 @@ public class GenreUseCaseConfig {
     public UpdateGenreUseCase updateGenreUseCase() {
         return new DefaultUpdateGenreUseCase(categoryGateway, genreGateway);
     }
-
 }

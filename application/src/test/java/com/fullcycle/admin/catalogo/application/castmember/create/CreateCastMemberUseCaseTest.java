@@ -1,6 +1,5 @@
 package com.fullcycle.admin.catalogo.application.castmember.create;
 
-import com.fullcycle.admin.catalogo.application.Fixture;
 import com.fullcycle.admin.catalogo.application.UseCaseTest;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberGateway;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberType;
@@ -12,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 
+import static com.fullcycle.admin.catalogo.domain.Fixture.CastMembers;
+import static com.fullcycle.admin.catalogo.domain.Fixture.name;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -38,8 +39,8 @@ public class CreateCastMemberUseCaseTest extends UseCaseTest {
     @Test
     public void givenAValidCommand_whenCallsCreateCastMember_shouldReturnIt() {
         //given
-        final var expectedName = Fixture.name();
-        final var expectedType = Fixture.CastMember.type();
+        final var expectedName = name();
+        final var expectedType = CastMembers.type();
 
         final var aCommand = CreateCastMemberCommand.with(expectedName, expectedType);
 
@@ -65,7 +66,7 @@ public class CreateCastMemberUseCaseTest extends UseCaseTest {
     public void givenAnInvalidName_whenCallsCreateCastMember_shouldThrowsNotificationException() {
         //given
         final String expectedName = null;
-        final var expectedType = Fixture.CastMember.type();
+        final var expectedType = CastMembers.type();
         final var expectedErrorCount = 1;
         final var expectedErrorMessage = "'name' should not be null";
 
@@ -88,7 +89,7 @@ public class CreateCastMemberUseCaseTest extends UseCaseTest {
     @Test
     public void givenAnInvalidType_whenCallsCreateCastMember_shouldThrowsNotificationException() {
         //given
-        final var expectedName = Fixture.name();
+        final var expectedName = name();
         final CastMemberType expectedType = null;
         final var expectedErrorCount = 1;
         final var expectedErrorMessage = "'type' should not be null";

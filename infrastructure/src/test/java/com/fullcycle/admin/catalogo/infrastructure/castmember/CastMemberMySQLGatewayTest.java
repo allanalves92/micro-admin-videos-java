@@ -1,6 +1,5 @@
 package com.fullcycle.admin.catalogo.infrastructure.castmember;
 
-import com.fullcycle.admin.catalogo.Fixture;
 import com.fullcycle.admin.catalogo.MySQLGatewayTest;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMember;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberID;
@@ -17,7 +16,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import static com.fullcycle.admin.catalogo.Fixture.name;
+import static com.fullcycle.admin.catalogo.domain.Fixture.CastMembers;
+import static com.fullcycle.admin.catalogo.domain.Fixture.name;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,7 +41,7 @@ public class CastMemberMySQLGatewayTest {
     public void givenAValidCastMember_whenCallsCreate_shouldReturnPersistIt() {
         //given
         final var expectedName = name();
-        final var expectedType = Fixture.CastMember.type();
+        final var expectedType = CastMembers.type();
 
         final var aMember = CastMember.newMember(expectedName, expectedType);
         final var expectedId = aMember.getId();
@@ -109,7 +109,7 @@ public class CastMemberMySQLGatewayTest {
     @Test
     public void givenAValidId_whenCallsDeleteById_shouldDeleteIt() {
         //given
-        final var aMember = CastMember.newMember(Fixture.name(), Fixture.CastMember.type());
+        final var aMember = CastMember.newMember(name(), CastMembers.type());
 
         castMemberRepository.saveAndFlush(CastMemberJpaEntity.from(aMember));
 
@@ -137,8 +137,8 @@ public class CastMemberMySQLGatewayTest {
     @Test
     public void givenAValidCastMember_whenCallsFindById_shouldReturnIt() {
         //given
-        final var expectedName = Fixture.name();
-        final var expectedType = Fixture.CastMember.type();
+        final var expectedName = name();
+        final var expectedType = CastMembers.type();
         final var aMember = CastMember.newMember(expectedName, expectedType);
         final var expectedId = aMember.getId();
 
